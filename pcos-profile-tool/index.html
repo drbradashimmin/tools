@@ -1,5 +1,5 @@
-<!-- PCOS Field Notes — Profile Tool — Carrd Inline Embed Version -->
-<!-- Paste the entire contents of this file into the Carrd Code embed field -->
+<!-- PCOS Field Notes — Profile Tool — GitHub Pages Version -->
+<!-- Upload this file as index.html inside your pcos-profile-tool folder -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,13 +33,6 @@
     </div>
   </div>
 
-  <!-- Loading -->
-  <div id="pfn-loading" style="display:none;text-align:center;padding:3rem 1rem;">
-    <div id="pfn-spinner" style="width:36px;height:36px;border:2px solid #E2D9C5;border-top-color:#C4622D;border-radius:50%;margin:0 auto 1.5rem;"></div>
-    <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-style:italic;color:#2C2416;margin-bottom:0.5rem;">Mapping your pattern…</div>
-    <p style="font-size:13px;color:#4A3F2F;line-height:1.65;font-family:'Raleway',Arial,sans-serif;">We're working through your responses.<br>This takes just a moment.</p>
-  </div>
-
   <!-- Results -->
   <div id="pfn-results" style="display:none;">
 
@@ -67,7 +60,7 @@
 
       <!-- ═══════════════════════════════════════════════════════
            OMNISEND EMBED ZONE
-           Paste your Omnisend script tags below this comment.
+           Paste your Omnisend embed div and script tags here.
       ════════════════════════════════════════════════════════ -->
       <div id="omnisend-embedded-v2-69f1e1c22aa3d2dc5baa44d2"></div>
       <!-- PASTE OMNISEND SCRIPT TAGS BELOW THIS LINE -->
@@ -94,19 +87,49 @@
 </div>
 
 <style>
-  @keyframes pfn-spin { to { transform: rotate(360deg); } }
   @keyframes pfn-fadeslide { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-  #pfn-spinner { animation: pfn-spin 0.9s linear infinite; }
 </style>
 
 <script>
 (function() {
 
-const OPT = 'display:flex;align-items:flex-start;gap:10px;padding:11px 14px;background:#FAF7F2;border:1px solid #D6CBBA;border-radius:7px;cursor:pointer;text-align:left;font-family:Raleway,Arial,sans-serif;font-size:14px;color:#4A3F2F;line-height:1.5;width:100%;box-sizing:border-box;margin:0;';
+const OPT   = 'display:flex;align-items:flex-start;gap:10px;padding:11px 14px;background:#FAF7F2;border:1px solid #D6CBBA;border-radius:7px;cursor:pointer;text-align:left;font-family:Raleway,Arial,sans-serif;font-size:14px;color:#4A3F2F;line-height:1.5;width:100%;box-sizing:border-box;margin:0;';
 const OPT_S = 'display:flex;align-items:flex-start;gap:10px;padding:11px 14px;background:#F0E0D4;border:1px solid #C4622D;border-radius:7px;cursor:pointer;text-align:left;font-family:Raleway,Arial,sans-serif;font-size:14px;color:#2C2416;line-height:1.5;width:100%;box-sizing:border-box;margin:0;';
-const DOT = 'width:8px;height:8px;border-radius:50%;border:1.5px solid #7A8C6E;background:transparent;flex-shrink:0;margin-top:5px;';
+const DOT   = 'width:8px;height:8px;border-radius:50%;border:1.5px solid #7A8C6E;background:transparent;flex-shrink:0;margin-top:5px;';
 const DOT_S = 'width:8px;height:8px;border-radius:50%;border:1.5px solid #C4622D;background:#C4622D;flex-shrink:0;margin-top:5px;';
-const CARD = 'background:#EDE6D6;border:0.5px solid #E2D9C5;border-radius:10px;padding:1.75rem;margin-bottom:1.25rem;box-shadow:0 2px 12px rgba(44,36,22,0.08),0 1px 3px rgba(44,36,22,0.05);animation:pfn-fadeslide 0.35s ease forwards;';
+const CARD  = 'background:#EDE6D6;border:0.5px solid #E2D9C5;border-radius:10px;padding:1.75rem;margin-bottom:1.25rem;box-shadow:0 2px 12px rgba(44,36,22,0.08),0 1px 3px rgba(44,36,22,0.05);animation:pfn-fadeslide 0.35s ease forwards;';
+
+// Pre-written pattern descriptions — one per pattern
+const PATTERNS = {
+  'Insulin-Dominant': {
+    desc: "Insulin resistance appears to be a central driver of your PCOS. This is the most common pattern, and once you understand it, a lot of symptoms that seemed random start to make sense — the fatigue, the cravings, the cycle irregularities can all trace back to the same upstream problem.",
+    tag: "pattern-insulin-dominant"
+  },
+  'Androgen-Led': {
+    desc: "Elevated androgen activity appears prominent in your profile. Androgens — often thought of as male hormones — are present in all women, but in PCOS they can run higher than usual, and it's this that drives the most visible symptoms like hair changes and skin issues.",
+    tag: "pattern-androgen-led"
+  },
+  'HPO Axis': {
+    desc: "Disrupted signalling between your brain and ovaries appears most prominent in your profile. The HPO axis — the communication pathway that tells your ovaries when to ovulate — is sensitive to stress, sleep, and inflammation, all of which can throw it off course.",
+    tag: "pattern-hpo-axis"
+  },
+  'Insulin and Hormonal': {
+    desc: "Both insulin resistance and disrupted hormonal signalling appear active in your pattern. These two drivers are closely connected — insulin resistance increases androgen production, which in turn affects the hormonal signals that regulate your cycle.",
+    tag: "pattern-insulin-hormonal"
+  },
+  'Androgen and Metabolic': {
+    desc: "Elevated androgen activity and metabolic features both appear in your profile. These two aspects of PCOS often travel together and tend to reinforce each other, which can make symptoms feel persistent and wide-ranging.",
+    tag: "pattern-androgen-metabolic"
+  },
+  'Mixed': {
+    desc: "All three core PCOS drivers appear active in your picture — insulin resistance, androgen activity, and disrupted hormonal signalling are each contributing. This mixed pattern is common and simply means there are several interconnected mechanisms worth understanding.",
+    tag: "pattern-mixed"
+  },
+  'Mixed Hormonal': {
+    desc: "Disrupted hormonal signalling and androgen activity both appear active in your profile. These two drivers are closely linked in PCOS and often show up together — understanding how they interact is key to making sense of your symptoms.",
+    tag: "pattern-mixed-hormonal"
+  }
+};
 
 const qs = [
   {sec:"About your cycles",text:"How would you describe your menstrual cycles?",sub:"This helps us understand the hormonal signalling side of your PCOS.",type:"single",key:"cycles",
@@ -192,7 +215,7 @@ function pfnUpdateBtn() {
 
 window.pfnNext = function() {
   if (cur < qs.length - 1) { cur++; pfnRender(cur); }
-  else pfnGenerate();
+  else pfnShowResults();
 };
 
 window.pfnBack = function() {
@@ -219,16 +242,16 @@ function pfnScore() {
   return {ins,and,hpo};
 }
 
-function pfnPattern(s) {
+function pfnPatternKey(s) {
   const {ins,and,hpo}=s, max=Math.max(ins,and,hpo);
   const hi=[ins,and,hpo].filter(v=>v>=max*0.7).length;
-  if (hi>=3) return ["Mixed Pattern","All three core PCOS drivers appear active in your picture — insulin resistance, androgen activity, and disrupted hormonal signalling are each contributing to your experience."];
-  if (ins===max&&ins>and+2&&ins>hpo+2) return ["Insulin-Dominant Pattern","Insulin resistance appears to be a central driver of your PCOS. This is the most common pattern, and it often explains a wide range of symptoms that can seem unrelated on the surface."];
-  if (and===max&&and>ins+2&&and>hpo+2) return ["Androgen-Led Pattern","Elevated androgen activity appears prominent in your profile. This is the driver most closely linked to the visible symptoms of PCOS."];
-  if (hpo===max&&hpo>ins+2&&hpo>and+2) return ["HPO Axis Pattern","Disrupted signalling between your brain and ovaries appears most prominent. This is the pathway that governs when and whether you ovulate."];
-  if (ins>=hpo&&ins>=and) return ["Insulin and Hormonal Pattern","Both insulin resistance and disrupted hormonal signalling appear active in your pattern — a very common combination that creates a reinforcing cycle between the two."];
-  if (and>=hpo) return ["Androgen and Metabolic Pattern","Elevated androgen activity and metabolic features appear together in your profile — a pattern where the two often amplify each other."];
-  return ["Mixed Hormonal Pattern","Disrupted hormonal signalling and androgen activity both appear active. These two drivers are closely linked and often travel together in PCOS."];
+  if (hi>=3) return 'Mixed';
+  if (ins===max&&ins>and+2&&ins>hpo+2) return 'Insulin-Dominant';
+  if (and===max&&and>ins+2&&and>hpo+2) return 'Androgen-Led';
+  if (hpo===max&&hpo>ins+2&&hpo>and+2) return 'HPO Axis';
+  if (ins>=hpo&&ins>=and) return 'Insulin and Hormonal';
+  if (and>=hpo) return 'Androgen and Metabolic';
+  return 'Mixed Hormonal';
 }
 
 function pfnTags() {
@@ -269,36 +292,20 @@ function pfnTeasers(s) {
   return pts.slice(0,3);
 }
 
-async function pfnGenerate() {
+function pfnShowResults() {
   document.getElementById('pfn-quiz').style.display = 'none';
-  document.getElementById('pfn-loading').style.display = 'block';
 
   const scores = pfnScore();
-  const [pName, pDesc] = pfnPattern(scores);
+  const key = pfnPatternKey(scores);
+  const pattern = PATTERNS[key];
   const tags = pfnTags();
   const teasers = pfnTeasers(scores);
 
-  let desc = pDesc;
-  try {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        model:"claude-sonnet-4-20250514",
-        max_tokens:200,
-        messages:[{role:"user",content:`You are Dr Brada, a HAES-aligned women's health GP. Write exactly 2 warm, plain-language sentences describing what the PCOS pattern "${pName}" means for a woman. Start from: "${pDesc}". Do not mention weight or diets. Do not use em-dashes, the word "actually", or "overwhelm". Sound like a GP talking to a patient, not marketing copy. Return only the 2 sentences.`}]
-      })
-    });
-    const d = await res.json();
-    const txt = d.content?.map(b=>b.text||'').join('').trim();
-    if (txt) desc = txt;
-  } catch(e) {}
+  // Pattern name and description
+  document.getElementById('pfn-pname').innerHTML = `<em style="color:#C4622D;font-style:italic;">${key}</em> Pattern`;
+  document.getElementById('pfn-pdesc').textContent = pattern.desc;
 
-  document.getElementById('pfn-loading').style.display = 'none';
-
-  document.getElementById('pfn-pname').innerHTML = pName.replace(/(.+) Pattern/,'<em style="color:#C4622D;font-style:italic;">$1</em> Pattern');
-  document.getElementById('pfn-pdesc').textContent = desc;
-
+  // Driver bars
   const maxS = Math.max(scores.ins, scores.and, scores.hpo, 1);
   const drivers = [
     {name:"Insulin resistance",score:scores.ins},
@@ -318,15 +325,20 @@ async function pfnGenerate() {
     </div>`;
   }).join('');
 
+  // Tags
   document.getElementById('pfn-tags').innerHTML = tags.map(t =>
     `<span style="font-size:12px;padding:5px 12px;background:${t.h?'#F0E0D4':'#EDE6D6'};border:0.5px solid ${t.h?'#C4622D':'#E2D9C5'};border-radius:20px;color:${t.h?'#2C2416':'#4A3F2F'};font-family:Raleway,Arial,sans-serif;">${t.l}</span>`
   ).join('') || '<span style="font-size:12px;padding:5px 12px;background:#EDE6D6;border:0.5px solid #E2D9C5;border-radius:20px;color:#4A3F2F;">No symptoms flagged</span>';
 
+  // Teasers
   document.getElementById('pfn-teasers').innerHTML = teasers.map(t =>
-    `<li style="font-size:13px;color:#D6E0CE;line-height:1.6;padding-left:16px;position:relative;font-family:Raleway,Arial,sans-serif;"><span style="position:absolute;left:0;color:#C4622D;font-size:11px;top:1px;">→</span>${t}</li>`
+    `<li style="font-size:13px;color:#D6E0CE;line-height:1.6;padding-left:16px;position:relative;font-family:Raleway,Arial,sans-serif;list-style:none;"><span style="position:absolute;left:0;color:#C4622D;font-size:11px;top:1px;">→</span>${t}</li>`
   ).join('');
 
   document.getElementById('pfn-results').style.display = 'block';
+
+  // Store pattern tag for Omnisend (available as window.pfnPatternTag)
+  window.pfnPatternTag = pattern.tag;
 }
 
 window.pfnRestart = function() {
