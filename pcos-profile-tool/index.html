@@ -1,0 +1,342 @@
+<!-- PCOS Field Notes — Profile Tool — Carrd Inline Embed Version -->
+<!-- Paste the entire contents of this file into the Carrd Code embed field -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<div id="pfn-root" style="font-family:'Raleway',Arial,sans-serif;background:#F5F0E8;color:#2C2416;width:100%;padding:2rem 1.5rem 3rem;box-sizing:border-box;">
+<div style="max-width:620px;margin:0 auto;">
+
+  <!-- Header -->
+  <div style="text-align:center;padding-bottom:1.5rem;border-bottom:0.5px solid #E2D9C5;margin-bottom:2rem;">
+    <div style="font-family:'Raleway',Arial,sans-serif;font-size:11px;font-style:normal;font-weight:600;color:#7A8C6E;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.5rem;">PCOS Field Notes</div>
+    <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(26px,5vw,38px);font-weight:400;line-height:1.2;color:#2C2416;margin:0.4rem 0 0.75rem;">Your <em style="font-style:italic;color:#C4622D;">PCOS Pattern</em><br>Profile</div>
+    <p style="font-size:14px;color:#4A3F2F;line-height:1.75;max-width:480px;margin:0 auto;font-family:'Raleway',Arial,sans-serif;">Answer these questions to help us map your personal symptom profile. We'll use your responses to identify what's driving your symptoms and put together a report explaining what it means.</p>
+  </div>
+
+  <!-- Quiz -->
+  <div id="pfn-quiz">
+    <div style="margin-bottom:1.75rem;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+        <span id="pfn-section" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7A8C6E;font-family:'Raleway',Arial,sans-serif;">About your cycles</span>
+        <span id="pfn-count" style="font-size:11px;color:#4A3F2F;opacity:0.6;font-family:'Raleway',Arial,sans-serif;">1 of 13</span>
+      </div>
+      <div style="height:2px;background:#E2D9C5;border-radius:2px;overflow:hidden;">
+        <div id="pfn-fill" style="height:100%;background:#C4622D;border-radius:2px;width:7%;transition:width 0.4s ease;"></div>
+      </div>
+    </div>
+    <div id="pfn-qarea"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem;">
+      <button id="pfn-back" onclick="pfnBack()" style="font-family:'Raleway',Arial,sans-serif;font-size:13px;color:#7A8C6E;background:none;border:none;cursor:pointer;padding:8px 0;letter-spacing:0.04em;visibility:hidden;">← Back</button>
+      <button id="pfn-next" onclick="pfnNext()" disabled style="font-family:'Raleway',Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:#F5F0E8;background:#C4622D;border:none;border-radius:6px;padding:13px 28px;cursor:pointer;box-shadow:0 3px 10px rgba(196,98,45,0.4);opacity:0.35;">Continue →</button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div id="pfn-loading" style="display:none;text-align:center;padding:3rem 1rem;">
+    <div id="pfn-spinner" style="width:36px;height:36px;border:2px solid #E2D9C5;border-top-color:#C4622D;border-radius:50%;margin:0 auto 1.5rem;"></div>
+    <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-style:italic;color:#2C2416;margin-bottom:0.5rem;">Mapping your pattern…</div>
+    <p style="font-size:13px;color:#4A3F2F;line-height:1.65;font-family:'Raleway',Arial,sans-serif;">We're working through your responses.<br>This takes just a moment.</p>
+  </div>
+
+  <!-- Results -->
+  <div id="pfn-results" style="display:none;">
+
+    <div style="text-align:center;padding:2rem 1.5rem;background:#EDE6D6;border:0.5px solid #E2D9C5;border-radius:10px;margin-bottom:1.5rem;box-shadow:0 2px 12px rgba(44,36,22,0.07);">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#7A8C6E;margin-bottom:0.6rem;font-family:'Raleway',Arial,sans-serif;">Your PCOS pattern</div>
+      <div id="pfn-pname" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:500;color:#2C2416;line-height:1.2;margin-bottom:0.6rem;">—</div>
+      <div id="pfn-pdesc" style="font-size:14px;color:#4A3F2F;line-height:1.75;max-width:440px;margin:0 auto;font-family:'Raleway',Arial,sans-serif;"></div>
+    </div>
+
+    <div style="margin-bottom:1.5rem;">
+      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7A8C6E;margin-bottom:0.75rem;font-family:'Raleway',Arial,sans-serif;">What appears most active in your pattern</div>
+      <div id="pfn-drivers"></div>
+    </div>
+
+    <div style="margin-bottom:1.5rem;">
+      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7A8C6E;margin-bottom:0.75rem;font-family:'Raleway',Arial,sans-serif;">Symptoms you reported</div>
+      <div id="pfn-tags" style="display:flex;flex-wrap:wrap;gap:7px;"></div>
+    </div>
+
+    <div style="background:#2C2416;border-radius:10px;padding:1.75rem;margin-bottom:1.5rem;">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#D6E0CE;margin-bottom:0.6rem;opacity:0.8;font-family:'Raleway',Arial,sans-serif;">Your full report</div>
+      <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:400;color:#F5F0E8;margin-bottom:0.5rem;line-height:1.3;">What your pattern means — and what's behind it</div>
+      <p style="font-size:13px;color:#D6E0CE;line-height:1.7;margin-bottom:1.25rem;opacity:0.85;font-family:'Raleway',Arial,sans-serif;">Your profile summary is a starting point. The full report goes deeper, explaining the mechanisms driving your specific symptoms and how they connect to each other.</p>
+      <ul id="pfn-teasers" style="list-style:none;margin-bottom:1.25rem;display:flex;flex-direction:column;gap:7px;padding:0;"></ul>
+
+      <!-- ═══════════════════════════════════════════════════════
+           OMNISEND EMBED ZONE
+           Paste your Omnisend script tags below this comment.
+      ════════════════════════════════════════════════════════ -->
+      <div id="omnisend-embedded-v2-69f1e1c22aa3d2dc5baa44d2"></div>
+      <!-- PASTE OMNISEND SCRIPT TAGS BELOW THIS LINE -->
+
+      <!-- ═══════════════════════════════════════════════════════
+           END OMNISEND EMBED ZONE
+      ════════════════════════════════════════════════════════ -->
+
+      <div style="font-size:11px;color:rgba(245,240,232,0.4);letter-spacing:0.02em;text-align:center;margin-top:6px;font-family:'Raleway',Arial,sans-serif;">No spam. Unsubscribe any time.</div>
+    </div>
+
+    <div style="border-top:0.5px solid #E2D9C5;margin-top:1.75rem;padding-top:1.75rem;">
+      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7A8C6E;margin-bottom:0.75rem;font-family:'Raleway',Arial,sans-serif;">About this resource</div>
+      <div style="font-size:14px;color:#4A3F2F;line-height:1.8;font-family:'Raleway',Arial,sans-serif;">
+        <strong style="color:#2C2416;">Dr Brada</strong> is a women's health GP with a special interest in PCOS, and personal experience of it. PCOS Field Notes exists to give women the clear, honest, evidence-based information they often don't get in a standard consultation. No protocols, no shame. Just understanding.<br><br>
+        This profile is educational, not diagnostic. For personalised medical advice, please speak with your own GP or a women's health specialist.
+      </div>
+    </div>
+
+    <button onclick="pfnRestart()" style="display:block;margin:2rem auto 0;font-family:'Raleway',Arial,sans-serif;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#7A8C6E;background:none;border:none;cursor:pointer;padding:0.5rem;">Start again</button>
+  </div>
+
+</div>
+</div>
+
+<style>
+  @keyframes pfn-spin { to { transform: rotate(360deg); } }
+  @keyframes pfn-fadeslide { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+  #pfn-spinner { animation: pfn-spin 0.9s linear infinite; }
+</style>
+
+<script>
+(function() {
+
+const OPT = 'display:flex;align-items:flex-start;gap:10px;padding:11px 14px;background:#FAF7F2;border:1px solid #D6CBBA;border-radius:7px;cursor:pointer;text-align:left;font-family:Raleway,Arial,sans-serif;font-size:14px;color:#4A3F2F;line-height:1.5;width:100%;box-sizing:border-box;margin:0;';
+const OPT_S = 'display:flex;align-items:flex-start;gap:10px;padding:11px 14px;background:#F0E0D4;border:1px solid #C4622D;border-radius:7px;cursor:pointer;text-align:left;font-family:Raleway,Arial,sans-serif;font-size:14px;color:#2C2416;line-height:1.5;width:100%;box-sizing:border-box;margin:0;';
+const DOT = 'width:8px;height:8px;border-radius:50%;border:1.5px solid #7A8C6E;background:transparent;flex-shrink:0;margin-top:5px;';
+const DOT_S = 'width:8px;height:8px;border-radius:50%;border:1.5px solid #C4622D;background:#C4622D;flex-shrink:0;margin-top:5px;';
+const CARD = 'background:#EDE6D6;border:0.5px solid #E2D9C5;border-radius:10px;padding:1.75rem;margin-bottom:1.25rem;box-shadow:0 2px 12px rgba(44,36,22,0.08),0 1px 3px rgba(44,36,22,0.05);animation:pfn-fadeslide 0.35s ease forwards;';
+
+const qs = [
+  {sec:"About your cycles",text:"How would you describe your menstrual cycles?",sub:"This helps us understand the hormonal signalling side of your PCOS.",type:"single",key:"cycles",
+    opts:["Very irregular — cycles vary a lot, or I can go months without one","Somewhat irregular — usually late, but not always","Regular on the outside, but my GP has confirmed I'm not always ovulating","Fairly regular — around every 21–35 days"]},
+  {sec:"About your cycles",text:"When your period does come, how would you describe it?",sub:null,type:"single",key:"period_quality",
+    opts:["Light and short — or barely there","Heavy, painful, or prolonged","Variable — it really depends","Pretty normal when it arrives"]},
+  {sec:"Skin & hair",text:"Have you noticed any of the following? Select all that apply.",sub:"These symptoms often point toward androgen (testosterone) activity.",type:"multi",key:"androgen_symptoms",
+    opts:["Excess facial or body hair (chin, upper lip, chest, stomach)","Hair thinning or loss on the scalp","Persistent acne — especially on the jaw, chin, or back","Oily skin that's hard to manage","None of the above"]},
+  {sec:"Skin & hair",text:"If you have acne or skin concerns, when did they start or worsen?",sub:null,type:"single",key:"acne_timing",
+    opts:["Around puberty and never really resolved","In my 20s or 30s — came on or got worse as an adult","Around a hormonal shift — going off the pill, after pregnancy, or during stress","Skin isn't a major issue for me"]},
+  {sec:"Energy & metabolism",text:"How is your energy day to day?",sub:"Energy and fatigue are often connected to how well insulin is working in your body.",type:"single",key:"energy",
+    opts:["Persistently low — I'm tired most of the time regardless of sleep","Energy crashes, especially after meals or in the afternoon","Variable — good days and bad days with no clear pattern","Reasonably stable"]},
+  {sec:"Energy & metabolism",text:"Do you experience any of the following? Select all that apply.",sub:"These can be signs of how your body processes glucose and insulin.",type:"multi",key:"metabolic_symptoms",
+    opts:["Strong carbohydrate or sugar cravings","Feeling hungry soon after meals","Difficulty losing weight even with diet and exercise changes","Weight that tends to sit around the abdomen","Brain fog or difficulty concentrating","None of these particularly"]},
+  {sec:"Energy & metabolism",text:"Has a doctor ever mentioned insulin resistance, pre-diabetes, or elevated fasting insulin?",sub:null,type:"single",key:"insulin_dx",
+    opts:["Yes, I have been told I have insulin resistance, pre-diabetes, or elevated fasting insulin","Not that I know of, but my sugar has been high at times","I had gestational diabetes during pregnancy, but my sugars are normal again now","No, and I don't think it applies to me"]},
+  {sec:"Sleep & stress",text:"How is your sleep?",sub:"Sleep disruption and PCOS often have a two-way relationship.",type:"single",key:"sleep",
+    opts:["Poor — difficulty falling or staying asleep most nights","I sleep but still wake exhausted","I snore heavily or have been told I stop breathing during sleep","Sleep is generally okay"]},
+  {sec:"Sleep & stress",text:"How would you describe your current stress levels?",sub:"Chronic stress affects the HPO axis — the hormonal communication between your brain and ovaries.",type:"single",key:"stress",
+    opts:["High — sustained pressure with limited recovery time","Moderate — manageable but present","Low — I feel reasonably settled","Variable — it comes in waves"]},
+  {sec:"Mood & mental health",text:"Have you noticed any of the following? Select all that apply.",sub:"These are more common in PCOS than most people — or doctors — realise.",type:"multi",key:"mental_health",
+    opts:["Anxiety — persistent worry, nervousness, or feeling on edge","Low mood or depression","A complicated relationship with food or eating","Negative feelings about my body or appearance","None of these have been significant for me"]},
+  {sec:"Your diagnosis journey",text:"How long ago were you diagnosed with PCOS?",sub:null,type:"single",key:"diagnosis_time",
+    opts:["Very recently — within the last year","1–3 years ago","More than 3 years ago","I haven't been formally diagnosed — I'm here because I suspect I have it"]},
+  {sec:"Your diagnosis journey",text:"How did your diagnosis (or suspected PCOS) come about?",sub:null,type:"single",key:"diagnosis_route",
+    opts:["I pushed for answers after doing my own research","A doctor picked it up as part of an investigation","It came up when I was exploring fertility concerns","I'm still piecing it together — no firm answer yet"]},
+  {sec:"What matters most to you",text:"Right now, what feels most important to understand about your PCOS?",sub:"This helps us frame your report around what's most relevant to you.",type:"single",key:"priority",
+    opts:["Why my body works the way it does — the underlying mechanism","What I can do that might help","Whether my symptoms are likely to change over time","How to have better conversations with my doctors"]}
+];
+
+let cur = 0, ans = {};
+
+function pfnRender(i) {
+  const q = qs[i];
+  document.getElementById('pfn-section').textContent = q.sec;
+  document.getElementById('pfn-count').textContent = `${i+1} of ${qs.length}`;
+  document.getElementById('pfn-fill').style.width = `${((i+1)/qs.length)*100}%`;
+  document.getElementById('pfn-back').style.visibility = i > 0 ? 'visible' : 'hidden';
+  const btn = document.getElementById('pfn-next');
+  btn.textContent = i === qs.length-1 ? 'See my pattern →' : 'Continue →';
+
+  const saved = ans[q.key] || [];
+  let html = `<div style="${CARD}">
+    <span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7A8C6E;margin-bottom:0.6rem;display:block;font-family:Raleway,Arial,sans-serif;">${q.sec}</span>
+    <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-weight:500;line-height:1.35;color:#2C2416;margin-bottom:1.25rem;">${q.text}</div>
+    ${q.sub ? `<div style="font-size:13px;color:#4A3F2F;line-height:1.65;margin-bottom:1.25rem;opacity:0.8;font-family:Raleway,Arial,sans-serif;">${q.sub}</div>` : ''}
+    ${q.type==='multi' ? '<div style="font-size:11px;color:#7A8C6E;margin-bottom:0.75rem;font-style:italic;font-family:Raleway,Arial,sans-serif;">Select all that apply</div>' : ''}
+    <div style="display:flex;flex-direction:column;gap:8px;">`;
+
+  q.opts.forEach((opt, idx) => {
+    const sel = Array.isArray(saved) ? saved.includes(idx) : saved === idx;
+    html += `<button onclick="pfnSelect(${idx})" style="${sel ? OPT_S : OPT}">
+      <div style="${sel ? DOT_S : DOT}"></div><span>${opt}</span>
+    </button>`;
+  });
+
+  html += `</div></div>`;
+  document.getElementById('pfn-qarea').innerHTML = html;
+  pfnUpdateBtn();
+}
+
+function pfnSelect(idx) {
+  const q = qs[cur];
+  if (q.type === 'single') {
+    ans[q.key] = idx;
+  } else {
+    if (!ans[q.key]) ans[q.key] = [];
+    const arr = ans[q.key], pos = arr.indexOf(idx);
+    if (pos > -1) arr.splice(pos, 1); else arr.push(idx);
+  }
+  pfnRender(cur);
+}
+
+function pfnUpdateBtn() {
+  const q = qs[cur], a = ans[q.key];
+  const enabled = q.type === 'single' ? a !== undefined : (a && a.length > 0);
+  const btn = document.getElementById('pfn-next');
+  btn.disabled = !enabled;
+  btn.style.opacity = enabled ? '1' : '0.35';
+  btn.style.cursor = enabled ? 'pointer' : 'not-allowed';
+  btn.style.boxShadow = enabled ? '0 3px 10px rgba(196,98,45,0.4)' : 'none';
+}
+
+window.pfnNext = function() {
+  if (cur < qs.length - 1) { cur++; pfnRender(cur); }
+  else pfnGenerate();
+};
+
+window.pfnBack = function() {
+  if (cur > 0) { cur--; pfnRender(cur); }
+};
+
+function pfnScore() {
+  const a = ans;
+  let ins=0, and=0, hpo=0;
+  if (a.cycles===0) hpo+=3; else if (a.cycles===1) hpo+=2; else if (a.cycles===2) hpo+=1;
+  if (a.period_quality===0) hpo+=1;
+  const as=a.androgen_symptoms||[];
+  if (as.includes(0)) and+=3; if (as.includes(1)) and+=2; if (as.includes(2)) and+=2; if (as.includes(3)) and+=1;
+  if (a.acne_timing===1||a.acne_timing===2) and+=1;
+  if (a.energy===0||a.energy===1) ins+=2;
+  const ms=a.metabolic_symptoms||[];
+  if (ms.includes(0)) ins+=2; if (ms.includes(1)) ins+=1; if (ms.includes(2)) ins+=2; if (ms.includes(3)) ins+=2; if (ms.includes(4)) ins+=1;
+  if (a.insulin_dx===0) ins+=4; else if (a.insulin_dx===1||a.insulin_dx===2) ins+=2;
+  if (a.sleep===2) ins+=2;
+  if (a.sleep===0||a.sleep===1) { ins+=1; hpo+=1; }
+  if (a.stress===0) hpo+=2; else if (a.stress===1) hpo+=1;
+  const mh=a.mental_health||[];
+  if (mh.includes(0)) hpo+=1; if (mh.includes(1)) hpo+=1;
+  return {ins,and,hpo};
+}
+
+function pfnPattern(s) {
+  const {ins,and,hpo}=s, max=Math.max(ins,and,hpo);
+  const hi=[ins,and,hpo].filter(v=>v>=max*0.7).length;
+  if (hi>=3) return ["Mixed Pattern","All three core PCOS drivers appear active in your picture — insulin resistance, androgen activity, and disrupted hormonal signalling are each contributing to your experience."];
+  if (ins===max&&ins>and+2&&ins>hpo+2) return ["Insulin-Dominant Pattern","Insulin resistance appears to be a central driver of your PCOS. This is the most common pattern, and it often explains a wide range of symptoms that can seem unrelated on the surface."];
+  if (and===max&&and>ins+2&&and>hpo+2) return ["Androgen-Led Pattern","Elevated androgen activity appears prominent in your profile. This is the driver most closely linked to the visible symptoms of PCOS."];
+  if (hpo===max&&hpo>ins+2&&hpo>and+2) return ["HPO Axis Pattern","Disrupted signalling between your brain and ovaries appears most prominent. This is the pathway that governs when and whether you ovulate."];
+  if (ins>=hpo&&ins>=and) return ["Insulin and Hormonal Pattern","Both insulin resistance and disrupted hormonal signalling appear active in your pattern — a very common combination that creates a reinforcing cycle between the two."];
+  if (and>=hpo) return ["Androgen and Metabolic Pattern","Elevated androgen activity and metabolic features appear together in your profile — a pattern where the two often amplify each other."];
+  return ["Mixed Hormonal Pattern","Disrupted hormonal signalling and androgen activity both appear active. These two drivers are closely linked and often travel together in PCOS."];
+}
+
+function pfnTags() {
+  const a=ans,t=[];
+  if (a.cycles===0||a.cycles===1) t.push({l:"Irregular cycles",h:true});
+  if (a.cycles===2) t.push({l:"Anovulatory cycles",h:true});
+  const as=a.androgen_symptoms||[];
+  if (as.includes(0)) t.push({l:"Excess hair growth",h:true});
+  if (as.includes(1)) t.push({l:"Hair thinning",h:true});
+  if (as.includes(2)) t.push({l:"Hormonal acne",h:true});
+  if (as.includes(3)) t.push({l:"Oily skin",h:false});
+  if (a.energy===0) t.push({l:"Persistent fatigue",h:true});
+  if (a.energy===1) t.push({l:"Energy crashes",h:true});
+  const ms=a.metabolic_symptoms||[];
+  if (ms.includes(0)) t.push({l:"Sugar cravings",h:false});
+  if (ms.includes(1)) t.push({l:"Hunger after meals",h:false});
+  if (ms.includes(3)) t.push({l:"Abdominal weight",h:false});
+  if (ms.includes(4)) t.push({l:"Brain fog",h:false});
+  if (a.insulin_dx===0) t.push({l:"Confirmed insulin resistance",h:true});
+  if (a.insulin_dx===2) t.push({l:"History of gestational diabetes",h:true});
+  if (a.sleep===0||a.sleep===1) t.push({l:"Poor sleep",h:false});
+  if (a.sleep===2) t.push({l:"Possible sleep apnoea",h:true});
+  if (a.stress===0) t.push({l:"High stress",h:false});
+  const mh=a.mental_health||[];
+  if (mh.includes(0)) t.push({l:"Anxiety",h:false});
+  if (mh.includes(1)) t.push({l:"Low mood",h:false});
+  if (mh.includes(2)) t.push({l:"Disordered eating concerns",h:false});
+  return t;
+}
+
+function pfnTeasers(s) {
+  const {ins,and,hpo}=s, pts=[];
+  if (ins>3) pts.push("How insulin resistance connects to your specific symptoms, and what the research says about it");
+  if (and>3) pts.push("Why androgen excess shows up on your skin and hair, and what's happening underneath");
+  if (hpo>3) pts.push("What disrupted HPO signalling means for your cycle, and why it matters beyond periods");
+  pts.push("How your sleep, stress and mood fit into the rest of your PCOS picture");
+  pts.push("What understanding your pattern means for how you approach your care");
+  return pts.slice(0,3);
+}
+
+async function pfnGenerate() {
+  document.getElementById('pfn-quiz').style.display = 'none';
+  document.getElementById('pfn-loading').style.display = 'block';
+
+  const scores = pfnScore();
+  const [pName, pDesc] = pfnPattern(scores);
+  const tags = pfnTags();
+  const teasers = pfnTeasers(scores);
+
+  let desc = pDesc;
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        model:"claude-sonnet-4-20250514",
+        max_tokens:200,
+        messages:[{role:"user",content:`You are Dr Brada, a HAES-aligned women's health GP. Write exactly 2 warm, plain-language sentences describing what the PCOS pattern "${pName}" means for a woman. Start from: "${pDesc}". Do not mention weight or diets. Do not use em-dashes, the word "actually", or "overwhelm". Sound like a GP talking to a patient, not marketing copy. Return only the 2 sentences.`}]
+      })
+    });
+    const d = await res.json();
+    const txt = d.content?.map(b=>b.text||'').join('').trim();
+    if (txt) desc = txt;
+  } catch(e) {}
+
+  document.getElementById('pfn-loading').style.display = 'none';
+
+  document.getElementById('pfn-pname').innerHTML = pName.replace(/(.+) Pattern/,'<em style="color:#C4622D;font-style:italic;">$1</em> Pattern');
+  document.getElementById('pfn-pdesc').textContent = desc;
+
+  const maxS = Math.max(scores.ins, scores.and, scores.hpo, 1);
+  const drivers = [
+    {name:"Insulin resistance",score:scores.ins},
+    {name:"Androgen activity",score:scores.and},
+    {name:"HPO axis signalling",score:scores.hpo}
+  ];
+  document.getElementById('pfn-drivers').innerHTML = drivers.map(d => {
+    const pct = Math.round((d.score/maxS)*100);
+    const col = pct>=70?'#C4622D':pct>=35?'#7A8C6E':'#E2D9C5';
+    const lbl = pct>=70?'Prominent':pct>=35?'Present':'Low';
+    return `<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#EDE6D6;border-radius:8px;border:0.5px solid #E2D9C5;margin-bottom:8px;">
+      <div style="font-size:13px;font-weight:500;color:#2C2416;min-width:160px;font-family:Raleway,Arial,sans-serif;">${d.name}</div>
+      <div style="flex:1;height:4px;background:#E2D9C5;border-radius:4px;overflow:hidden;">
+        <div style="height:100%;width:${pct}%;background:${col};border-radius:4px;"></div>
+      </div>
+      <div style="font-size:11px;color:#7A8C6E;letter-spacing:0.06em;text-transform:uppercase;min-width:40px;text-align:right;font-family:Raleway,Arial,sans-serif;">${lbl}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('pfn-tags').innerHTML = tags.map(t =>
+    `<span style="font-size:12px;padding:5px 12px;background:${t.h?'#F0E0D4':'#EDE6D6'};border:0.5px solid ${t.h?'#C4622D':'#E2D9C5'};border-radius:20px;color:${t.h?'#2C2416':'#4A3F2F'};font-family:Raleway,Arial,sans-serif;">${t.l}</span>`
+  ).join('') || '<span style="font-size:12px;padding:5px 12px;background:#EDE6D6;border:0.5px solid #E2D9C5;border-radius:20px;color:#4A3F2F;">No symptoms flagged</span>';
+
+  document.getElementById('pfn-teasers').innerHTML = teasers.map(t =>
+    `<li style="font-size:13px;color:#D6E0CE;line-height:1.6;padding-left:16px;position:relative;font-family:Raleway,Arial,sans-serif;"><span style="position:absolute;left:0;color:#C4622D;font-size:11px;top:1px;">→</span>${t}</li>`
+  ).join('');
+
+  document.getElementById('pfn-results').style.display = 'block';
+}
+
+window.pfnRestart = function() {
+  ans = {}; cur = 0;
+  document.getElementById('pfn-results').style.display = 'none';
+  document.getElementById('pfn-quiz').style.display = 'block';
+  pfnRender(0);
+};
+
+pfnRender(0);
+
+})();
+</script>
