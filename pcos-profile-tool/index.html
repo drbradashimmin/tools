@@ -1,105 +1,167 @@
-<!-- PCOS Field Notes — Profile Tool — GitHub Pages Version -->
-<!-- Upload this file as index.html inside your pcos-profile-tool folder -->
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your PCOS Pattern Profile — PCOS Field Notes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #F5F0E8; font-family: 'Raleway', Arial, sans-serif; color: #2C2416; }
+.shell { max-width: 620px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
 
-<div id="pfn-root" style="font-family:'Raleway',Arial,sans-serif;background:#F5F0E8;color:#2C2416;width:100%;padding:2rem 1.5rem 3rem;box-sizing:border-box;">
-<div style="max-width:620px;margin:0 auto;">
+.header { text-align: center; padding-bottom: 1.5rem; border-bottom: 0.5px solid #E2D9C5; margin-bottom: 2rem; }
+.brand { font-size: 11px; font-weight: 600; color: #7A8C6E; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(26px,5vw,38px); font-weight: 400; line-height: 1.2; color: #2C2416; margin: 0.4rem 0 0.75rem; }
+.title em { font-style: italic; color: #C4622D; }
+.intro { font-size: 14px; color: #4A3F2F; line-height: 1.75; max-width: 480px; margin: 0 auto; }
 
-  <!-- Header -->
-  <div style="text-align:center;padding-bottom:1.5rem;border-bottom:0.5px solid #E2D9C5;margin-bottom:2rem;">
-    <div style="font-family:'Raleway',Arial,sans-serif;font-size:11px;font-style:normal;font-weight:600;color:#7A8C6E;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.5rem;">PCOS Field Notes</div>
-    <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(26px,5vw,38px);font-weight:400;line-height:1.2;color:#2C2416;margin:0.4rem 0 0.75rem;">Your <em style="font-style:italic;color:#C4622D;">PCOS Pattern</em><br>Profile</div>
-    <p style="font-size:14px;color:#4A3F2F;line-height:1.75;max-width:480px;margin:0 auto;font-family:'Raleway',Arial,sans-serif;">Answer these questions to help us map your personal symptom profile. We'll use your responses to identify what's driving your symptoms and put together a report explaining what it means.</p>
+.progress-wrap { margin-bottom: 1.75rem; }
+.progress-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+.progress-section { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7A8C6E; }
+.progress-count { font-size: 11px; color: #4A3F2F; opacity: 0.6; }
+.progress-track { height: 2px; background: #E2D9C5; border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; background: #C4622D; border-radius: 2px; transition: width 0.4s ease; }
+
+.card { background: #EDE6D6; border: 0.5px solid #E2D9C5; border-radius: 10px; padding: 1.75rem; margin-bottom: 1.25rem; box-shadow: 0 2px 12px rgba(44,36,22,0.08), 0 1px 3px rgba(44,36,22,0.05); }
+.q-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7A8C6E; margin-bottom: 0.6rem; display: block; }
+.q-text { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 20px; font-weight: 500; line-height: 1.35; color: #2C2416; margin-bottom: 1.25rem; }
+.q-sub { font-size: 13px; color: #4A3F2F; line-height: 1.65; margin-bottom: 1.25rem; opacity: 0.8; }
+.multi-hint { font-size: 11px; color: #7A8C6E; margin-bottom: 0.75rem; font-style: italic; }
+.options { display: flex; flex-direction: column; gap: 8px; }
+
+.opt {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 11px 14px; background: #FAF7F2;
+  border: 1px solid #D6CBBA; border-radius: 7px;
+  cursor: pointer; text-align: left;
+  font-family: 'Raleway', Arial, sans-serif; font-size: 14px;
+  color: #4A3F2F; line-height: 1.5; width: 100%;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.opt:hover { background: #F0E0D4; border-color: #C4622D; color: #2C2416; }
+.opt.selected { background: #F0E0D4; border-color: #C4622D; color: #2C2416; }
+.dot { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #7A8C6E; background: transparent; flex-shrink: 0; margin-top: 5px; transition: all 0.15s ease; }
+.opt.selected .dot { border-color: #C4622D; background: #C4622D; }
+
+.nav { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
+.btn-back { font-family: 'Raleway', Arial, sans-serif; font-size: 13px; color: #7A8C6E; background: none; border: none; cursor: pointer; padding: 8px 0; letter-spacing: 0.04em; }
+.btn-back:hover { color: #2C2416; }
+.btn-next {
+  font-family: 'Raleway', Arial, sans-serif; font-size: 13px; font-weight: 600;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  color: #F5F0E8; background: #C4622D; border: none; border-radius: 6px;
+  padding: 13px 28px; cursor: pointer;
+  box-shadow: 0 3px 10px rgba(196,98,45,0.4);
+  transition: background 0.18s ease;
+}
+.btn-next:hover:not(:disabled) { background: #a8521f; }
+.btn-next:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
+
+.results { display: none; }
+.pattern-badge { text-align: center; padding: 2rem 1.5rem; background: #EDE6D6; border: 0.5px solid #E2D9C5; border-radius: 10px; margin-bottom: 1.5rem; box-shadow: 0 2px 12px rgba(44,36,22,0.07); }
+.badge-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #7A8C6E; margin-bottom: 0.6rem; }
+.badge-name { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; font-weight: 500; color: #2C2416; line-height: 1.2; margin-bottom: 0.6rem; }
+.badge-name em { color: #C4622D; font-style: italic; }
+.badge-desc { font-size: 14px; color: #4A3F2F; line-height: 1.75; max-width: 440px; margin: 0 auto; }
+
+.section-heading { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7A8C6E; margin-bottom: 0.75rem; }
+.drivers { margin-bottom: 1.5rem; }
+.driver-row { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: #EDE6D6; border-radius: 8px; border: 0.5px solid #E2D9C5; margin-bottom: 8px; }
+.driver-name { font-size: 13px; font-weight: 500; color: #2C2416; min-width: 160px; }
+.driver-bar-wrap { flex: 1; height: 4px; background: #E2D9C5; border-radius: 4px; overflow: hidden; }
+.driver-bar { height: 100%; border-radius: 4px; }
+.driver-level { font-size: 11px; color: #7A8C6E; letter-spacing: 0.06em; text-transform: uppercase; min-width: 40px; text-align: right; }
+
+.tags-wrap { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 1.5rem; }
+.tag { font-size: 12px; padding: 5px 12px; background: #EDE6D6; border: 0.5px solid #E2D9C5; border-radius: 20px; color: #4A3F2F; }
+.tag.hi { background: #F0E0D4; border-color: #C4622D; color: #2C2416; }
+
+.teaser { background: #2C2416; border-radius: 10px; padding: 1.75rem; margin-bottom: 1.5rem; }
+.teaser-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #D6E0CE; margin-bottom: 0.6rem; opacity: 0.8; }
+.teaser-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22px; font-weight: 400; color: #F5F0E8; margin-bottom: 0.5rem; line-height: 1.3; }
+.teaser-body { font-size: 13px; color: #D6E0CE; line-height: 1.7; margin-bottom: 1.25rem; opacity: 0.85; }
+.teaser-list { list-style: none; margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 7px; padding: 0; }
+.teaser-list li { font-size: 13px; color: #D6E0CE; line-height: 1.6; padding-left: 16px; position: relative; }
+.teaser-list li::before { content: '→'; position: absolute; left: 0; color: #C4622D; font-size: 11px; top: 1px; }
+.privacy { font-size: 11px; color: rgba(245,240,232,0.4); letter-spacing: 0.02em; text-align: center; margin-top: 6px; }
+
+.about { border-top: 0.5px solid #E2D9C5; margin-top: 1.75rem; padding-top: 1.75rem; }
+.about-text { font-size: 14px; color: #4A3F2F; line-height: 1.8; }
+.about-text strong { color: #2C2416; }
+.restart { display: block; margin: 2rem auto 0; font-family: 'Raleway', Arial, sans-serif; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #7A8C6E; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+.restart:hover { color: #2C2416; }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="header">
+    <div class="brand">PCOS Field Notes</div>
+    <h1 class="title">Your <em>PCOS Pattern</em><br>Profile</h1>
+    <p class="intro">Answer these questions to help us map your personal symptom profile. We'll use your responses to identify what's driving your symptoms and put together a report explaining what it means.</p>
   </div>
 
-  <!-- Quiz -->
-  <div id="pfn-quiz">
-    <div style="margin-bottom:1.75rem;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
-        <span id="pfn-section" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7A8C6E;font-family:'Raleway',Arial,sans-serif;">About your cycles</span>
-        <span id="pfn-count" style="font-size:11px;color:#4A3F2F;opacity:0.6;font-family:'Raleway',Arial,sans-serif;">1 of 13</span>
+  <div id="quiz">
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span class="progress-section" id="prog-section">About your cycles</span>
+        <span class="progress-count" id="prog-count">1 of 13</span>
       </div>
-      <div style="height:2px;background:#E2D9C5;border-radius:2px;overflow:hidden;">
-        <div id="pfn-fill" style="height:100%;background:#C4622D;border-radius:2px;width:7%;transition:width 0.4s ease;"></div>
+      <div class="progress-track">
+        <div class="progress-fill" id="prog-fill" style="width:7%"></div>
       </div>
     </div>
-    <div id="pfn-qarea"></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem;">
-      <button id="pfn-back" onclick="pfnBack()" style="font-family:'Raleway',Arial,sans-serif;font-size:13px;color:#7A8C6E;background:none;border:none;cursor:pointer;padding:8px 0;letter-spacing:0.04em;visibility:hidden;">← Back</button>
-      <button id="pfn-next" onclick="pfnNext()" disabled style="font-family:'Raleway',Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:#F5F0E8;background:#C4622D;border:none;border-radius:6px;padding:13px 28px;cursor:pointer;box-shadow:0 3px 10px rgba(196,98,45,0.4);opacity:0.35;">Continue →</button>
+    <div id="qarea"></div>
+    <div class="nav">
+      <button class="btn-back" id="btn-back" style="visibility:hidden">← Back</button>
+      <button class="btn-next" id="btn-next" disabled>Continue →</button>
     </div>
   </div>
 
-  <!-- Results -->
-  <div id="pfn-results" style="display:none;">
-
-    <div style="text-align:center;padding:2rem 1.5rem;background:#EDE6D6;border:0.5px solid #E2D9C5;border-radius:10px;margin-bottom:1.5rem;box-shadow:0 2px 12px rgba(44,36,22,0.07);">
-      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#7A8C6E;margin-bottom:0.6rem;font-family:'Raleway',Arial,sans-serif;">Your PCOS pattern</div>
-      <div id="pfn-pname" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:500;color:#2C2416;line-height:1.2;margin-bottom:0.6rem;">—</div>
-      <div id="pfn-pdesc" style="font-size:14px;color:#4A3F2F;line-height:1.75;max-width:440px;margin:0 auto;font-family:'Raleway',Arial,sans-serif;"></div>
+  <div class="results" id="results">
+    <div class="pattern-badge">
+      <div class="badge-eyebrow">Your PCOS pattern</div>
+      <div class="badge-name" id="badge-name">—</div>
+      <div class="badge-desc" id="badge-desc"></div>
     </div>
-
-    <div style="margin-bottom:1.5rem;">
-      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7A8C6E;margin-bottom:0.75rem;font-family:'Raleway',Arial,sans-serif;">What appears most active in your pattern</div>
-      <div id="pfn-drivers"></div>
+    <div class="drivers">
+      <div class="section-heading">What appears most active in your pattern</div>
+      <div id="drivers-list"></div>
     </div>
-
-    <div style="margin-bottom:1.5rem;">
-      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7A8C6E;margin-bottom:0.75rem;font-family:'Raleway',Arial,sans-serif;">Symptoms you reported</div>
-      <div id="pfn-tags" style="display:flex;flex-wrap:wrap;gap:7px;"></div>
+    <div>
+      <div class="section-heading">Symptoms you reported</div>
+      <div class="tags-wrap" id="tags-list"></div>
     </div>
-
-    <div style="background:#2C2416;border-radius:10px;padding:1.75rem;margin-bottom:1.5rem;">
-      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#D6E0CE;margin-bottom:0.6rem;opacity:0.8;font-family:'Raleway',Arial,sans-serif;">Your full report</div>
-      <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:400;color:#F5F0E8;margin-bottom:0.5rem;line-height:1.3;">What your pattern means — and what's behind it</div>
-      <p style="font-size:13px;color:#D6E0CE;line-height:1.7;margin-bottom:1.25rem;opacity:0.85;font-family:'Raleway',Arial,sans-serif;">Your profile summary is a starting point. The full report goes deeper, explaining the mechanisms driving your specific symptoms and how they connect to each other.</p>
-      <ul id="pfn-teasers" style="list-style:none;margin-bottom:1.25rem;display:flex;flex-direction:column;gap:7px;padding:0;"></ul>
-
-      <!-- ═══════════════════════════════════════════════════════
+    <div class="teaser">
+      <div class="teaser-eyebrow">Your full report</div>
+      <div class="teaser-title">What your pattern means — and what's behind it</div>
+      <p class="teaser-body">Your profile summary is a starting point. The full report goes deeper, explaining the mechanisms driving your specific symptoms and how they connect to each other.</p>
+      <ul class="teaser-list" id="teaser-list"></ul>
+      <!-- ═══════════════════════════════════════════
            OMNISEND EMBED ZONE
-           Paste your Omnisend embed div and script tags here.
-      ════════════════════════════════════════════════════════ -->
+           Paste Omnisend embed div + script tags here
+      ════════════════════════════════════════════ -->
       <div id="omnisend-embedded-v2-69f1e1c22aa3d2dc5baa44d2"></div>
-      <!-- PASTE OMNISEND SCRIPT TAGS BELOW THIS LINE -->
+      <!-- PASTE OMNISEND SCRIPT TAGS BELOW -->
 
-      <!-- ═══════════════════════════════════════════════════════
-           END OMNISEND EMBED ZONE
-      ════════════════════════════════════════════════════════ -->
-
-      <div style="font-size:11px;color:rgba(245,240,232,0.4);letter-spacing:0.02em;text-align:center;margin-top:6px;font-family:'Raleway',Arial,sans-serif;">No spam. Unsubscribe any time.</div>
+      <!-- END OMNISEND EMBED ZONE -->
+      <div class="privacy">No spam. Unsubscribe any time.</div>
     </div>
-
-    <div style="border-top:0.5px solid #E2D9C5;margin-top:1.75rem;padding-top:1.75rem;">
-      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7A8C6E;margin-bottom:0.75rem;font-family:'Raleway',Arial,sans-serif;">About this resource</div>
-      <div style="font-size:14px;color:#4A3F2F;line-height:1.8;font-family:'Raleway',Arial,sans-serif;">
-        <strong style="color:#2C2416;">Dr Brada</strong> is a women's health GP with a special interest in PCOS, and personal experience of it. PCOS Field Notes exists to give women the clear, honest, evidence-based information they often don't get in a standard consultation. No protocols, no shame. Just understanding.<br><br>
+    <div class="about">
+      <div class="section-heading">About this resource</div>
+      <div class="about-text">
+        <strong>Dr Brada</strong> is a women's health GP with a special interest in PCOS, and personal experience of it. PCOS Field Notes exists to give women the clear, honest, evidence-based information they often don't get in a standard consultation. No protocols, no shame. Just understanding.<br><br>
         This profile is educational, not diagnostic. For personalised medical advice, please speak with your own GP or a women's health specialist.
       </div>
     </div>
-
-    <button onclick="pfnRestart()" style="display:block;margin:2rem auto 0;font-family:'Raleway',Arial,sans-serif;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#7A8C6E;background:none;border:none;cursor:pointer;padding:0.5rem;">Start again</button>
+    <button class="restart" id="btn-restart">Start again</button>
   </div>
 
 </div>
-</div>
-
-<style>
-  @keyframes pfn-fadeslide { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-</style>
-
 <script>
-(function() {
-
-const OPT   = 'display:flex;align-items:flex-start;gap:10px;padding:11px 14px;background:#FAF7F2;border:1px solid #D6CBBA;border-radius:7px;cursor:pointer;text-align:left;font-family:Raleway,Arial,sans-serif;font-size:14px;color:#4A3F2F;line-height:1.5;width:100%;box-sizing:border-box;margin:0;';
-const OPT_S = 'display:flex;align-items:flex-start;gap:10px;padding:11px 14px;background:#F0E0D4;border:1px solid #C4622D;border-radius:7px;cursor:pointer;text-align:left;font-family:Raleway,Arial,sans-serif;font-size:14px;color:#2C2416;line-height:1.5;width:100%;box-sizing:border-box;margin:0;';
-const DOT   = 'width:8px;height:8px;border-radius:50%;border:1.5px solid #7A8C6E;background:transparent;flex-shrink:0;margin-top:5px;';
-const DOT_S = 'width:8px;height:8px;border-radius:50%;border:1.5px solid #C4622D;background:#C4622D;flex-shrink:0;margin-top:5px;';
-const CARD  = 'background:#EDE6D6;border:0.5px solid #E2D9C5;border-radius:10px;padding:1.75rem;margin-bottom:1.25rem;box-shadow:0 2px 12px rgba(44,36,22,0.08),0 1px 3px rgba(44,36,22,0.05);animation:pfn-fadeslide 0.35s ease forwards;';
-
-// Pre-written pattern descriptions — one per pattern
 const PATTERNS = {
   'Insulin-Dominant': {
     desc: "Insulin resistance appears to be a central driver of your PCOS. This is the most common pattern, and once you understand it, a lot of symptoms that seemed random start to make sense — the fatigue, the cravings, the cycle irregularities can all trace back to the same upstream problem.",
@@ -162,36 +224,81 @@ const qs = [
 
 let cur = 0, ans = {};
 
-function pfnRender(i) {
+function render(i) {
   const q = qs[i];
-  document.getElementById('pfn-section').textContent = q.sec;
-  document.getElementById('pfn-count').textContent = `${i+1} of ${qs.length}`;
-  document.getElementById('pfn-fill').style.width = `${((i+1)/qs.length)*100}%`;
-  document.getElementById('pfn-back').style.visibility = i > 0 ? 'visible' : 'hidden';
-  const btn = document.getElementById('pfn-next');
-  btn.textContent = i === qs.length-1 ? 'See my pattern →' : 'Continue →';
+  document.getElementById('prog-section').textContent = q.sec;
+  document.getElementById('prog-count').textContent = `${i+1} of ${qs.length}`;
+  document.getElementById('prog-fill').style.width = `${((i+1)/qs.length)*100}%`;
+  document.getElementById('btn-back').style.visibility = i > 0 ? 'visible' : 'hidden';
+  document.getElementById('btn-next').textContent = i === qs.length-1 ? 'See my pattern →' : 'Continue →';
 
   const saved = ans[q.key] || [];
-  let html = `<div style="${CARD}">
-    <span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7A8C6E;margin-bottom:0.6rem;display:block;font-family:Raleway,Arial,sans-serif;">${q.sec}</span>
-    <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-weight:500;line-height:1.35;color:#2C2416;margin-bottom:1.25rem;">${q.text}</div>
-    ${q.sub ? `<div style="font-size:13px;color:#4A3F2F;line-height:1.65;margin-bottom:1.25rem;opacity:0.8;font-family:Raleway,Arial,sans-serif;">${q.sub}</div>` : ''}
-    ${q.type==='multi' ? '<div style="font-size:11px;color:#7A8C6E;margin-bottom:0.75rem;font-style:italic;font-family:Raleway,Arial,sans-serif;">Select all that apply</div>' : ''}
-    <div style="display:flex;flex-direction:column;gap:8px;">`;
+  const area = document.getElementById('qarea');
 
-  q.opts.forEach((opt, idx) => {
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  const label = document.createElement('span');
+  label.className = 'q-label';
+  label.textContent = q.sec;
+  card.appendChild(label);
+
+  const qtext = document.createElement('div');
+  qtext.className = 'q-text';
+  qtext.textContent = q.text;
+  card.appendChild(qtext);
+
+  if (q.sub) {
+    const sub = document.createElement('div');
+    sub.className = 'q-sub';
+    sub.textContent = q.sub;
+    card.appendChild(sub);
+  }
+
+  if (q.type === 'multi') {
+    const hint = document.createElement('div');
+    hint.className = 'multi-hint';
+    hint.textContent = 'Select all that apply';
+    card.appendChild(hint);
+  }
+
+  const opts = document.createElement('div');
+  opts.className = 'options';
+
+  q.opts.forEach((optText, idx) => {
     const sel = Array.isArray(saved) ? saved.includes(idx) : saved === idx;
-    html += `<button onclick="pfnSelect(${idx})" style="${sel ? OPT_S : OPT}">
-      <div style="${sel ? DOT_S : DOT}"></div><span>${opt}</span>
-    </button>`;
+    const btn = document.createElement('button');
+    btn.className = 'opt' + (sel ? ' selected' : '');
+    btn.type = 'button';
+    btn.dataset.idx = idx;
+
+    const dot = document.createElement('div');
+    dot.className = 'dot';
+    btn.appendChild(dot);
+
+    const span = document.createElement('span');
+    span.textContent = optText;
+    btn.appendChild(span);
+
+    opts.appendChild(btn);
   });
 
-  html += `</div></div>`;
-  document.getElementById('pfn-qarea').innerHTML = html;
-  pfnUpdateBtn();
+  card.appendChild(opts);
+  area.innerHTML = '';
+  area.appendChild(card);
+
+  // Attach click handlers via addEventListener — no inline onclick
+  opts.querySelectorAll('.opt').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const idx = parseInt(this.dataset.idx);
+      select(idx);
+    });
+  });
+
+  updateBtn();
 }
 
-function pfnSelect(idx) {
+function select(idx) {
   const q = qs[cur];
   if (q.type === 'single') {
     ans[q.key] = idx;
@@ -200,29 +307,32 @@ function pfnSelect(idx) {
     const arr = ans[q.key], pos = arr.indexOf(idx);
     if (pos > -1) arr.splice(pos, 1); else arr.push(idx);
   }
-  pfnRender(cur);
+  render(cur);
 }
 
-function pfnUpdateBtn() {
+function updateBtn() {
   const q = qs[cur], a = ans[q.key];
   const enabled = q.type === 'single' ? a !== undefined : (a && a.length > 0);
-  const btn = document.getElementById('pfn-next');
-  btn.disabled = !enabled;
-  btn.style.opacity = enabled ? '1' : '0.35';
-  btn.style.cursor = enabled ? 'pointer' : 'not-allowed';
-  btn.style.boxShadow = enabled ? '0 3px 10px rgba(196,98,45,0.4)' : 'none';
+  document.getElementById('btn-next').disabled = !enabled;
 }
 
-window.pfnNext = function() {
-  if (cur < qs.length - 1) { cur++; pfnRender(cur); }
-  else pfnShowResults();
-};
+document.getElementById('btn-next').addEventListener('click', function() {
+  if (cur < qs.length - 1) { cur++; render(cur); }
+  else showResults();
+});
 
-window.pfnBack = function() {
-  if (cur > 0) { cur--; pfnRender(cur); }
-};
+document.getElementById('btn-back').addEventListener('click', function() {
+  if (cur > 0) { cur--; render(cur); }
+});
 
-function pfnScore() {
+document.getElementById('btn-restart').addEventListener('click', function() {
+  ans = {}; cur = 0;
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('quiz').style.display = 'block';
+  render(0);
+});
+
+function score() {
   const a = ans;
   let ins=0, and=0, hpo=0;
   if (a.cycles===0) hpo+=3; else if (a.cycles===1) hpo+=2; else if (a.cycles===2) hpo+=1;
@@ -242,7 +352,7 @@ function pfnScore() {
   return {ins,and,hpo};
 }
 
-function pfnPatternKey(s) {
+function patternKey(s) {
   const {ins,and,hpo}=s, max=Math.max(ins,and,hpo);
   const hi=[ins,and,hpo].filter(v=>v>=max*0.7).length;
   if (hi>=3) return 'Mixed';
@@ -254,7 +364,7 @@ function pfnPatternKey(s) {
   return 'Mixed Hormonal';
 }
 
-function pfnTags() {
+function getTags() {
   const a=ans,t=[];
   if (a.cycles===0||a.cycles===1) t.push({l:"Irregular cycles",h:true});
   if (a.cycles===2) t.push({l:"Anovulatory cycles",h:true});
@@ -282,7 +392,7 @@ function pfnTags() {
   return t;
 }
 
-function pfnTeasers(s) {
+function getTeasers(s) {
   const {ins,and,hpo}=s, pts=[];
   if (ins>3) pts.push("How insulin resistance connects to your specific symptoms, and what the research says about it");
   if (and>3) pts.push("Why androgen excess shows up on your skin and hair, and what's happening underneath");
@@ -292,63 +402,47 @@ function pfnTeasers(s) {
   return pts.slice(0,3);
 }
 
-function pfnShowResults() {
-  document.getElementById('pfn-quiz').style.display = 'none';
+function showResults() {
+  document.getElementById('quiz').style.display = 'none';
 
-  const scores = pfnScore();
-  const key = pfnPatternKey(scores);
+  const s = score();
+  const key = patternKey(s);
   const pattern = PATTERNS[key];
-  const tags = pfnTags();
-  const teasers = pfnTeasers(scores);
+  const tags = getTags();
+  const teasers = getTeasers(s);
 
-  // Pattern name and description
-  document.getElementById('pfn-pname').innerHTML = `<em style="color:#C4622D;font-style:italic;">${key}</em> Pattern`;
-  document.getElementById('pfn-pdesc').textContent = pattern.desc;
+  document.getElementById('badge-name').innerHTML = `<em>${key}</em> Pattern`;
+  document.getElementById('badge-desc').textContent = pattern.desc;
 
-  // Driver bars
-  const maxS = Math.max(scores.ins, scores.and, scores.hpo, 1);
-  const drivers = [
-    {name:"Insulin resistance",score:scores.ins},
-    {name:"Androgen activity",score:scores.and},
-    {name:"HPO axis signalling",score:scores.hpo}
+  const maxS = Math.max(s.ins, s.and, s.hpo, 1);
+  const driverData = [
+    {name:"Insulin resistance", val:s.ins},
+    {name:"Androgen activity", val:s.and},
+    {name:"HPO axis signalling", val:s.hpo}
   ];
-  document.getElementById('pfn-drivers').innerHTML = drivers.map(d => {
-    const pct = Math.round((d.score/maxS)*100);
+  document.getElementById('drivers-list').innerHTML = driverData.map(d => {
+    const pct = Math.round((d.val/maxS)*100);
     const col = pct>=70?'#C4622D':pct>=35?'#7A8C6E':'#E2D9C5';
     const lbl = pct>=70?'Prominent':pct>=35?'Present':'Low';
-    return `<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#EDE6D6;border-radius:8px;border:0.5px solid #E2D9C5;margin-bottom:8px;">
-      <div style="font-size:13px;font-weight:500;color:#2C2416;min-width:160px;font-family:Raleway,Arial,sans-serif;">${d.name}</div>
-      <div style="flex:1;height:4px;background:#E2D9C5;border-radius:4px;overflow:hidden;">
-        <div style="height:100%;width:${pct}%;background:${col};border-radius:4px;"></div>
-      </div>
-      <div style="font-size:11px;color:#7A8C6E;letter-spacing:0.06em;text-transform:uppercase;min-width:40px;text-align:right;font-family:Raleway,Arial,sans-serif;">${lbl}</div>
+    return `<div class="driver-row">
+      <div class="driver-name">${d.name}</div>
+      <div class="driver-bar-wrap"><div class="driver-bar" style="width:${pct}%;background:${col};"></div></div>
+      <div class="driver-level">${lbl}</div>
     </div>`;
   }).join('');
 
-  // Tags
-  document.getElementById('pfn-tags').innerHTML = tags.map(t =>
-    `<span style="font-size:12px;padding:5px 12px;background:${t.h?'#F0E0D4':'#EDE6D6'};border:0.5px solid ${t.h?'#C4622D':'#E2D9C5'};border-radius:20px;color:${t.h?'#2C2416':'#4A3F2F'};font-family:Raleway,Arial,sans-serif;">${t.l}</span>`
-  ).join('') || '<span style="font-size:12px;padding:5px 12px;background:#EDE6D6;border:0.5px solid #E2D9C5;border-radius:20px;color:#4A3F2F;">No symptoms flagged</span>';
+  document.getElementById('tags-list').innerHTML = tags.length
+    ? tags.map(t => `<span class="tag${t.h?' hi':''}">${t.l}</span>`).join('')
+    : '<span class="tag">No symptoms flagged</span>';
 
-  // Teasers
-  document.getElementById('pfn-teasers').innerHTML = teasers.map(t =>
-    `<li style="font-size:13px;color:#D6E0CE;line-height:1.6;padding-left:16px;position:relative;font-family:Raleway,Arial,sans-serif;list-style:none;"><span style="position:absolute;left:0;color:#C4622D;font-size:11px;top:1px;">→</span>${t}</li>`
-  ).join('');
+  document.getElementById('teaser-list').innerHTML = teasers
+    .map(t => `<li>${t}</li>`).join('');
 
-  document.getElementById('pfn-results').style.display = 'block';
-
-  // Store pattern tag for Omnisend (available as window.pfnPatternTag)
+  document.getElementById('results').style.display = 'block';
   window.pfnPatternTag = pattern.tag;
 }
 
-window.pfnRestart = function() {
-  ans = {}; cur = 0;
-  document.getElementById('pfn-results').style.display = 'none';
-  document.getElementById('pfn-quiz').style.display = 'block';
-  pfnRender(0);
-};
-
-pfnRender(0);
-
-})();
+render(0);
 </script>
+</body>
+</html>
