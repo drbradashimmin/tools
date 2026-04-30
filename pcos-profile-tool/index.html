@@ -140,14 +140,7 @@ body { background: #F5F0E8; font-family: 'Raleway', Arial, sans-serif; color: #2
       <div class="teaser-title">What your pattern means — and what's behind it</div>
       <p class="teaser-body">Your profile summary is a starting point. The full report goes deeper, explaining the mechanisms driving your specific symptoms and how they connect to each other.</p>
       <ul class="teaser-list" id="teaser-list"></ul>
-      <!-- ═══════════════════════════════════════════
-           OMNISEND EMBED ZONE
-           Paste Omnisend embed div + script tags here
-      ════════════════════════════════════════════ -->
       <div id="omnisend-embedded-v2-69f1e1c22aa3d2dc5baa44d2"></div>
-      <!-- PASTE OMNISEND SCRIPT TAGS BELOW -->
-
-      <!-- END OMNISEND EMBED ZONE -->
       <div class="privacy">No spam. Unsubscribe any time.</div>
     </div>
     <div class="about">
@@ -161,6 +154,7 @@ body { background: #F5F0E8; font-family: 'Raleway', Arial, sans-serif; color: #2
   </div>
 
 </div>
+
 <script>
 const PATTERNS = {
   'Insulin-Dominant': {
@@ -280,20 +274,16 @@ function render(i) {
     span.textContent = optText;
     btn.appendChild(span);
 
+    btn.addEventListener('click', function() {
+      select(parseInt(this.dataset.idx));
+    });
+
     opts.appendChild(btn);
   });
 
   card.appendChild(opts);
   area.innerHTML = '';
   area.appendChild(card);
-
-  // Attach click handlers via addEventListener — no inline onclick
-  opts.querySelectorAll('.opt').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const idx = parseInt(this.dataset.idx);
-      select(idx);
-    });
-  });
 
   updateBtn();
 }
@@ -444,5 +434,18 @@ function showResults() {
 
 render(0);
 </script>
+
+<!-- Omnisend tracking script -->
+<script type="text/javascript">
+  window.omnisend = window.omnisend || [];
+  omnisend.push(["brandID", "69f1cab3264ad1949c991f07"]);
+  omnisend.push(["track", "$pageViewed"]);
+  !function(){var e=document.createElement("script");
+  e.type="text/javascript",e.async=!0,
+  e.src="https://omnisnippet1.com/inshop/launcher-v2.js";
+  var t=document.getElementsByTagName("script")[0];
+  t.parentNode.insertBefore(e,t)}();
+</script>
+
 </body>
 </html>
