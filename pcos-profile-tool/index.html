@@ -3,29 +3,139 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your PCOS Pattern Profile — PCOS Field Notes</title>
+<title>Your PCOS Pattern Profile</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: #F5F0E8; font-family: 'Raleway', Arial, sans-serif; color: #2C2416; }
-.shell { max-width: 620px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
 
-.header { text-align: center; padding-bottom: 1.5rem; border-bottom: 0.5px solid #E2D9C5; margin-bottom: 2rem; }
-.brand { font-size: 11px; font-weight: 600; color: #7A8C6E; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.5rem; }
-.title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(26px,5vw,38px); font-weight: 400; line-height: 1.2; color: #2C2416; margin: 0.4rem 0 0.75rem; }
-.title em { font-style: italic; color: #C4622D; }
-.intro { font-size: 14px; color: #4A3F2F; line-height: 1.75; max-width: 480px; margin: 0 auto; }
+body {
+  background: #F5F0E8;
+  font-family: 'Raleway', Arial, sans-serif;
+  color: #2C2416;
+}
 
-.progress-wrap { margin-bottom: 1.75rem; }
+.shell {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 0;
+}
+
+.shell-bottom {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+.header {
+  text-align: center;
+  padding-bottom: 1.5rem;
+  border-bottom: 0.5px solid #E2D9C5;
+  margin-bottom: 2rem;
+}
+
+.brand {
+  font-size: 11px;
+  font-weight: 600;
+  color: #7A8C6E;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(26px, 5vw, 38px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: #2C2416;
+  margin: 0 0 0.75rem;
+}
+
+.title em {
+  font-style: italic;
+  color: #C4622D;
+}
+
+.intro {
+  font-size: 14px;
+  color: #4A3F2F;
+  line-height: 1.75;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Progress */
+.progress-wrap { margin-bottom: 1rem; }
 .progress-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
 .progress-section { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7A8C6E; }
-.progress-count { font-size: 11px; color: #4A3F2F; opacity: 0.6; }
+.progress-count { font-size: 11px; color: #7A8C6E; opacity: 0.6; }
 .progress-track { height: 2px; background: #E2D9C5; border-radius: 2px; overflow: hidden; }
 .progress-fill { height: 100%; background: #C4622D; border-radius: 2px; transition: width 0.4s ease; }
 
-.card { background: #EDE6D6; border: 0.5px solid #E2D9C5; border-radius: 10px; padding: 1.75rem; margin-bottom: 1.25rem; box-shadow: 0 2px 12px rgba(44,36,22,0.08), 0 1px 3px rgba(44,36,22,0.05); }
+/* Section band */
+.section-band {
+  background: #7A8C6E;
+  border-radius: 6px 6px 0 0;
+  padding: 9px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+}
+.section-band-label {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #F5F0E8;
+}
+.section-band-count {
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: rgba(245,240,232,0.65);
+}
+
+/* Wreath wrapper — full viewport width */
+.wreath-wrap {
+  position: relative;
+  background-image: url('Berry_wreath_on_parchment_background.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 100%;
+  padding: 12vw 0;
+}
+
+@media (max-width: 600px) {
+  .wreath-wrap {
+    padding: 22vw 0;
+  }
+  .wreath-inner {
+    padding: 0 1rem;
+  }
+}
+
+.wreath-inner {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Card */
+.card {
+  background: #EDE6D6;
+  border: 0.5px solid #E2D9C5;
+  border-radius: 0 0 10px 10px;
+  border-top: none;
+  padding: 1.75rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 2px 12px rgba(44,36,22,0.08), 0 1px 3px rgba(44,36,22,0.05);
+}
+
 .q-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7A8C6E; margin-bottom: 0.6rem; display: block; }
 .q-text { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 20px; font-weight: 500; line-height: 1.35; color: #2C2416; margin-bottom: 1.25rem; }
 .q-sub { font-size: 13px; color: #4A3F2F; line-height: 1.65; margin-bottom: 1.25rem; opacity: 0.8; }
@@ -33,12 +143,20 @@ body { background: #F5F0E8; font-family: 'Raleway', Arial, sans-serif; color: #2
 .options { display: flex; flex-direction: column; gap: 8px; }
 
 .opt {
-  display: flex; align-items: flex-start; gap: 10px;
-  padding: 11px 14px; background: #FAF7F2;
-  border: 1px solid #D6CBBA; border-radius: 7px;
-  cursor: pointer; text-align: left;
-  font-family: 'Raleway', Arial, sans-serif; font-size: 14px;
-  color: #4A3F2F; line-height: 1.5; width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 14px;
+  background: #FAF7F2;
+  border: 1px solid #D6CBBA;
+  border-radius: 7px;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 14px;
+  color: #4A3F2F;
+  line-height: 1.5;
+  width: 100%;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 .opt:hover { background: #F0E0D4; border-color: #C4622D; color: #2C2416; }
@@ -46,22 +164,57 @@ body { background: #F5F0E8; font-family: 'Raleway', Arial, sans-serif; color: #2
 .dot { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #7A8C6E; background: transparent; flex-shrink: 0; margin-top: 5px; transition: all 0.15s ease; }
 .opt.selected .dot { border-color: #C4622D; background: #C4622D; }
 
-.nav { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
-.btn-back { font-family: 'Raleway', Arial, sans-serif; font-size: 13px; color: #7A8C6E; background: none; border: none; cursor: pointer; padding: 8px 0; letter-spacing: 0.04em; }
-.btn-back:hover { color: #2C2416; }
+/* Nav — sits OUTSIDE wreath-wrap */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.btn-back {
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 13px;
+  color: #7A8C6E;
+  background: #F5F0E8;
+  border: 1px solid #E2D9C5;
+  cursor: pointer;
+  padding: 8px 14px;
+  letter-spacing: 0.04em;
+  border-radius: 20px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.btn-back:hover { color: #2C2416; background: #EDE6D6; }
+
 .btn-next {
-  font-family: 'Raleway', Arial, sans-serif; font-size: 13px; font-weight: 600;
-  letter-spacing: 0.09em; text-transform: uppercase;
-  color: #F5F0E8; background: #C4622D; border: none; border-radius: 6px;
-  padding: 13px 28px; cursor: pointer;
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #F5F0E8;
+  background: #C4622D;
+  border: none;
+  border-radius: 6px;
+  padding: 13px 28px;
+  cursor: pointer;
   box-shadow: 0 3px 10px rgba(196,98,45,0.4);
   transition: background 0.18s ease;
 }
 .btn-next:hover:not(:disabled) { background: #a8521f; }
 .btn-next:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
 
+/* Results */
 .results { display: none; }
-.pattern-badge { text-align: center; padding: 2rem 1.5rem; background: #EDE6D6; border: 0.5px solid #E2D9C5; border-radius: 10px; margin-bottom: 1.5rem; box-shadow: 0 2px 12px rgba(44,36,22,0.07); }
+.pattern-badge {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: #EDE6D6;
+  border: 0.5px solid #E2D9C5;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 12px rgba(44,36,22,0.07);
+}
 .badge-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #7A8C6E; margin-bottom: 0.6rem; }
 .badge-name { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; font-weight: 500; color: #2C2416; line-height: 1.2; margin-bottom: 0.6rem; }
 .badge-name em { color: #C4622D; font-style: italic; }
@@ -79,52 +232,87 @@ body { background: #F5F0E8; font-family: 'Raleway', Arial, sans-serif; color: #2
 .tag { font-size: 12px; padding: 5px 12px; background: #EDE6D6; border: 0.5px solid #E2D9C5; border-radius: 20px; color: #4A3F2F; }
 .tag.hi { background: #F0E0D4; border-color: #C4622D; color: #2C2416; }
 
-.teaser { background: #2C2416; border-radius: 10px; padding: 1.75rem; margin-bottom: 1.5rem; }
+.teaser {
+  background: #2C2416;
+  border-radius: 10px;
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+}
 .teaser-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #D6E0CE; margin-bottom: 0.6rem; opacity: 0.8; }
 .teaser-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22px; font-weight: 400; color: #F5F0E8; margin-bottom: 0.5rem; line-height: 1.3; }
 .teaser-body { font-size: 13px; color: #D6E0CE; line-height: 1.7; margin-bottom: 1.25rem; opacity: 0.85; }
 .teaser-list { list-style: none; margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 7px; padding: 0; }
 .teaser-list li { font-size: 13px; color: #D6E0CE; line-height: 1.6; padding-left: 16px; position: relative; }
-.teaser-list li::before { content: '→'; position: absolute; left: 0; color: #C4622D; font-size: 11px; top: 1px; }
+.teaser-list li::before { content: '–'; position: absolute; left: 0; color: #C4622D; font-size: 11px; top: 1px; }
 .privacy { font-size: 11px; color: rgba(245,240,232,0.4); letter-spacing: 0.02em; text-align: center; margin-top: 6px; }
 
 .about { border-top: 0.5px solid #E2D9C5; margin-top: 1.75rem; padding-top: 1.75rem; }
 .about-text { font-size: 14px; color: #4A3F2F; line-height: 1.8; }
 .about-text strong { color: #2C2416; }
-.restart { display: block; margin: 2rem auto 0; font-family: 'Raleway', Arial, sans-serif; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #7A8C6E; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+
+.restart {
+  display: block;
+  margin: 2rem auto 0;
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7A8C6E;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
 .restart:hover { color: #2C2416; }
 </style>
 </head>
 <body>
 <div class="shell">
-
   <div class="header">
     <div class="brand">PCOS Field Notes</div>
     <h1 class="title">Your <em>PCOS Pattern</em><br>Profile</h1>
     <p class="intro">Answer these questions to help us map your personal symptom profile. We'll use your responses to identify what's driving your symptoms and put together a report explaining what it means.</p>
   </div>
+</div>
 
   <div id="quiz">
-    <div class="progress-wrap">
-      <div class="progress-meta">
-        <span class="progress-section" id="prog-section">About your cycles</span>
-        <span class="progress-count" id="prog-count">1 of 13</span>
-      </div>
-      <div class="progress-track">
-        <div class="progress-fill" id="prog-fill" style="width:7%"></div>
+    <div class="shell">
+      <div class="progress-wrap">
+        <div class="progress-meta">
+          <span class="progress-count" id="prog-count"></span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="prog-fill" style="width:7%"></div>
+        </div>
       </div>
     </div>
-    <div id="qarea"></div>
-    <div class="nav">
-      <button class="btn-back" id="btn-back" style="visibility:hidden">← Back</button>
-      <button class="btn-next" id="btn-next" disabled>Continue →</button>
+
+    <!-- Wreath background wrapper — full width -->
+    <div class="wreath-wrap">
+      <div class="wreath-inner">
+        <!-- Sage section band -->
+        <div class="section-band">
+          <span class="section-band-label" id="band-label">About your cycles</span>
+          <span class="section-band-count" id="band-count">1 of 13</span>
+        </div>
+        <div id="qarea"></div>
+      </div>
+    </div>
+
+    <!-- Nav sits outside wreath -->
+    <div class="shell-bottom">
+      <div class="nav">
+        <button class="btn-back" id="btn-back" style="visibility:hidden;">← Back</button>
+        <button class="btn-next" id="btn-next" disabled>Continue →</button>
+      </div>
     </div>
   </div>
 
+  <div class="shell-bottom">
   <div class="results" id="results">
     <div class="pattern-badge">
       <div class="badge-eyebrow">Your PCOS pattern</div>
-      <div class="badge-name" id="badge-name">—</div>
+      <div class="badge-name" id="badge-name"></div>
       <div class="badge-desc" id="badge-desc"></div>
     </div>
     <div class="drivers">
@@ -140,6 +328,7 @@ body { background: #F5F0E8; font-family: 'Raleway', Arial, sans-serif; color: #2
       <div class="teaser-title">What your pattern means — and what's behind it</div>
       <p class="teaser-body">Your profile summary is a starting point. The full report goes deeper, explaining the mechanisms driving your specific symptoms and how they connect to each other.</p>
       <ul class="teaser-list" id="teaser-list"></ul>
+      <!-- Omnisend embed -->
       <div id="omnisend-embedded-v2-69f1e1c22aa3d2dc5baa44d2"></div>
       <div class="privacy">No spam. Unsubscribe any time.</div>
     </div>
@@ -151,6 +340,7 @@ body { background: #F5F0E8; font-family: 'Raleway', Arial, sans-serif; color: #2
       </div>
     </div>
     <button class="restart" id="btn-restart">Start again</button>
+  </div>
   </div>
 
 </div>
@@ -169,21 +359,13 @@ const PATTERNS = {
     desc: "Disrupted signalling between your brain and ovaries appears most prominent in your profile. The HPO axis — the communication pathway that tells your ovaries when to ovulate — is sensitive to stress, sleep, and inflammation, all of which can throw it off course.",
     tag: "pattern-hpo-axis"
   },
-  'Insulin and Hormonal': {
-    desc: "Both insulin resistance and disrupted hormonal signalling appear active in your pattern. These two drivers are closely connected — insulin resistance increases androgen production, which in turn affects the hormonal signals that regulate your cycle.",
-    tag: "pattern-insulin-hormonal"
-  },
   'Androgen and Metabolic': {
     desc: "Elevated androgen activity and metabolic features both appear in your profile. These two aspects of PCOS often travel together and tend to reinforce each other, which can make symptoms feel persistent and wide-ranging.",
     tag: "pattern-androgen-metabolic"
   },
   'Mixed': {
-    desc: "All three core PCOS drivers appear active in your picture — insulin resistance, androgen activity, and disrupted hormonal signalling are each contributing. This mixed pattern is common and simply means there are several interconnected mechanisms worth understanding.",
+    desc: "Multiple PCOS drivers appear active in your picture — insulin resistance, androgen activity, and disrupted hormonal signalling are each contributing. This mixed pattern is common and simply means there are several interconnected mechanisms worth understanding.",
     tag: "pattern-mixed"
-  },
-  'Mixed Hormonal': {
-    desc: "Disrupted hormonal signalling and androgen activity both appear active in your profile. These two drivers are closely linked in PCOS and often show up together — understanding how they interact is key to making sense of your symptoms.",
-    tag: "pattern-mixed-hormonal"
   }
 };
 
@@ -220,9 +402,11 @@ let cur = 0, ans = {};
 
 function render(i) {
   const q = qs[i];
-  document.getElementById('prog-section').textContent = q.sec;
-  document.getElementById('prog-count').textContent = `${i+1} of ${qs.length}`;
   document.getElementById('prog-fill').style.width = `${((i+1)/qs.length)*100}%`;
+
+  document.getElementById('prog-count').textContent = `${i+1} of ${qs.length}`;
+  document.getElementById('band-label').textContent = q.sec;
+  document.getElementById('band-count').textContent = `${i+1} of ${qs.length}`;
   document.getElementById('btn-back').style.visibility = i > 0 ? 'visible' : 'hidden';
   document.getElementById('btn-next').textContent = i === qs.length-1 ? 'See my pattern →' : 'Continue →';
 
@@ -231,11 +415,6 @@ function render(i) {
 
   const card = document.createElement('div');
   card.className = 'card';
-
-  const label = document.createElement('span');
-  label.className = 'q-label';
-  label.textContent = q.sec;
-  card.appendChild(label);
 
   const qtext = document.createElement('div');
   qtext.className = 'q-text';
@@ -345,13 +524,15 @@ function score() {
 function patternKey(s) {
   const {ins,and,hpo}=s, max=Math.max(ins,and,hpo);
   const hi=[ins,and,hpo].filter(v=>v>=max*0.7).length;
-  if (hi>=3) return 'Mixed';
-  if (ins===max&&ins>and+2&&ins>hpo+2) return 'Insulin-Dominant';
-  if (and===max&&and>ins+2&&and>hpo+2) return 'Androgen-Led';
-  if (hpo===max&&hpo>ins+2&&hpo>and+2) return 'HPO Axis';
-  if (ins>=hpo&&ins>=and) return 'Insulin and Hormonal';
-  if (and>=hpo) return 'Androgen and Metabolic';
-  return 'Mixed Hormonal';
+  if (hi>=2) {
+    // Multiple drivers active — check if androgen+metabolic or general mixed
+    if (and>=max*0.7 && ins>=max*0.7 && hpo<max*0.7) return 'Androgen and Metabolic';
+    return 'Mixed';
+  }
+  if (ins===max) return 'Insulin-Dominant';
+  if (and===max) return 'Androgen-Led';
+  if (hpo===max) return 'HPO Axis';
+  return 'Mixed';
 }
 
 function getTags() {
@@ -433,8 +614,25 @@ function showResults() {
 }
 
 render(0);
-</script>
 
+// Tag the subscriber with their pattern result when they submit the Omnisend form
+// We watch for the form submission by monitoring the Omnisend queue
+(function() {
+  var _omnisend = window.omnisend = window.omnisend || [];
+  var originalPush = _omnisend.push.bind(_omnisend);
+  _omnisend.push = function(args) {
+    originalPush(args);
+    // When Omnisend fires a subscribed event, push the pattern tag
+    if (Array.isArray(args) && args[0] === 'track' && args[1] === '$subscribed') {
+      if (window.pfnPatternTag) {
+        setTimeout(function() {
+          originalPush(["tag", window.pfnPatternTag]);
+        }, 500);
+      }
+    }
+  };
+})();
+</script>
 <!-- Omnisend tracking script -->
 <script type="text/javascript">
   window.omnisend = window.omnisend || [];
@@ -446,6 +644,5 @@ render(0);
   var t=document.getElementsByTagName("script")[0];
   t.parentNode.insertBefore(e,t)}();
 </script>
-
 </body>
 </html>
