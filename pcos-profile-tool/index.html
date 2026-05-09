@@ -615,23 +615,37 @@ function showResults() {
 
 render(0);
 
-// Tag the subscriber with their pattern result when they submit the Omnisend form
-// We watch for the form submission by monitoring the Omnisend queue
-(function() {
-  var _omnisend = window.omnisend = window.omnisend || [];
-  var originalPush = _omnisend.push.bind(_omnisend);
-  _omnisend.push = function(args) {
-    originalPush(args);
-    // When Omnisend fires a subscribed event, push the pattern tag
-    if (Array.isArray(args) && args[0] === 'track' && args[1] === '$subscribed') {
-      if (window.pfnPatternTag) {
+// Apply pattern tag when Omnisend form is submitted
+// We wait for the form to render, then attach a click listener to the submit button
+function attachOmnisendTagging() {
+  var submitBtn = document.querySelector('[id^="omnisend-form-"][id*="-action-"]');
+  if (submitBtn) {
+    submitBtn.addEventListener('click', function() {
+      var emailInput = document.querySelector('input[type="email"]');
+      if (emailInput && emailInput.value && window.pfnPatternTag) {
+        var email = emailInput.value;
+        var tag = window.pfnPatternTag;
+        // Wait for Omnisend to process the signup before tagging
         setTimeout(function() {
-          originalPush(["tag", window.pfnPatternTag]);
-        }, 500);
+          window.omnisend.identifyContact({
+            email: email,
+            tags: [tag]
+          });
+        }, 2000);
       }
-    }
-  };
-})();
+    });
+  } else {
+    // Form not rendered yet, try again shortly
+    setTimeout(attachOmnisendTagging, 500);
+  }
+}
+
+// Start looking for the form button once results are shown
+var _origShowResults = showResults;
+showResults = function() {
+  _origShowResults();
+  setTimeout(attachOmnisendTagging, 1000);
+};
 </script>
 <!-- Omnisend tracking script -->
 <script type="text/javascript">
