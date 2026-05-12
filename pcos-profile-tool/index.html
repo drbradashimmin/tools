@@ -66,7 +66,15 @@ body {
   margin: 0 auto;
 }
 
-/* Progress */
+/* Prevent Omnisend overlay from blocking quiz interactions */
+#omnisend-dynamic-container,
+#omnisend-forms-wrapper {
+  pointer-events: none !important;
+}
+#omnisend-dynamic-container *,
+#omnisend-forms-wrapper * {
+  pointer-events: auto;
+}
 .progress-wrap { margin-bottom: 1rem; }
 .progress-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
 .progress-section { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7A8C6E; }
@@ -108,6 +116,7 @@ body {
   background-position: center center;
   width: 100%;
   padding: 12vw 0;
+  pointer-events: none;
 }
 
 @media (max-width: 600px) {
@@ -123,6 +132,8 @@ body {
   max-width: 500px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  pointer-events: auto;
+}
 }
 
 /* Card */
@@ -134,6 +145,8 @@ body {
   padding: 1.75rem;
   margin-bottom: 1.25rem;
   box-shadow: 0 2px 12px rgba(44,36,22,0.08), 0 1px 3px rgba(44,36,22,0.05);
+  position: relative;
+  z-index: 2;
 }
 
 .q-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7A8C6E; margin-bottom: 0.6rem; display: block; }
@@ -158,6 +171,8 @@ body {
   line-height: 1.5;
   width: 100%;
   transition: background 0.15s ease, border-color 0.15s ease;
+  position: relative;
+  z-index: 3;
 }
 .opt:hover { background: #F0E0D4; border-color: #C4622D; color: #2C2416; }
 .opt.selected { background: #F0E0D4; border-color: #C4622D; color: #2C2416; }
@@ -626,6 +641,17 @@ function showResults() {
 }
 
 render(0);
+
+// Forward clicks on wreath-wrap through to underlying buttons
+// This fixes the issue where the wreath background intercepts clicks on the first option
+document.querySelector('.wreath-wrap').addEventListener('click', function(e) {
+  if (e.target === this) {
+    this.style.pointerEvents = 'none';
+    var el = document.elementFromPoint(e.clientX, e.clientY);
+    this.style.pointerEvents = '';
+    if (el && el !== this) el.click();
+  }
+});
 </script>
 <!-- Omnisend tracking script -->
 <script type="text/javascript">
