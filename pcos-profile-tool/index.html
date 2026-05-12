@@ -66,15 +66,6 @@ body {
   margin: 0 auto;
 }
 
-/* Prevent Omnisend overlay from blocking quiz interactions */
-#omnisend-dynamic-container,
-#omnisend-forms-wrapper {
-  pointer-events: none !important;
-}
-#omnisend-dynamic-container *,
-#omnisend-forms-wrapper * {
-  pointer-events: auto;
-}
 .progress-wrap { margin-bottom: 1rem; }
 .progress-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
 .progress-section { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7A8C6E; }
@@ -116,8 +107,6 @@ body {
   background-position: center center;
   width: 100%;
   padding: 12vw 0;
-  pointer-events: none;
-  z-index: 0;
 }
 
 @media (max-width: 600px) {
@@ -133,9 +122,6 @@ body {
   max-width: 500px;
   margin: 0 auto;
   padding: 0 1.5rem;
-  pointer-events: auto;
-  position: relative;
-  z-index: 1;
 }
 
 /* Card */
@@ -149,9 +135,7 @@ body {
   box-shadow: 0 2px 12px rgba(44,36,22,0.08), 0 1px 3px rgba(44,36,22,0.05);
 }
 
-.q-text, .q-sub, .multi-hint { pointer-events: none; }
 .options { display: flex; flex-direction: column; gap: 8px; }
-.opt { pointer-events: auto; }
 
 .q-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7A8C6E; margin-bottom: 0.6rem; display: block; }
 .q-text { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 20px; font-weight: 500; line-height: 1.35; color: #2C2416; margin-bottom: 1.25rem; }
@@ -433,7 +417,7 @@ function render(i) {
   document.getElementById('btn-back').style.visibility = i > 0 ? 'visible' : 'hidden';
   document.getElementById('btn-next').textContent = i === qs.length-1 ? 'See my pattern →' : 'Continue →';
 
-  const saved = ans[q.key] || [];
+  const saved = ans[q.key] !== undefined ? ans[q.key] : [];
   const area = document.getElementById('qarea');
 
   const card = document.createElement('div');
@@ -463,9 +447,10 @@ function render(i) {
 
   q.opts.forEach((optText, idx) => {
     const sel = Array.isArray(saved) ? saved.includes(idx) : saved === idx;
-    const btn = document.createElement('button');
+    const btn = document.createElement('div');
     btn.className = 'opt' + (sel ? ' selected' : '');
-    btn.type = 'button';
+    btn.setAttribute('role', 'button');
+    btn.setAttribute('tabindex', '0');
     btn.dataset.idx = idx;
 
     const dot = document.createElement('div');
@@ -477,6 +462,10 @@ function render(i) {
     btn.appendChild(span);
 
     btn.addEventListener('click', function() {
+      select(parseInt(this.dataset.idx));
+    });
+    btn.addEventListener('pointerup', function(e) {
+      e.preventDefault();
       select(parseInt(this.dataset.idx));
     });
 
@@ -644,22 +633,6 @@ function showResults() {
 }
 
 render(0);
-
-// Forward clicks on card/options to the button underneath
-// Fixes issue where card div intercepts clicks intended for first option button
-document.getElementById('qarea').addEventListener('click', function(e) {
-  if (e.target.classList.contains('card') || e.target.classList.contains('options')) {
-    var buttons = this.querySelectorAll('.opt');
-    for (var i = 0; i < buttons.length; i++) {
-      var rect = buttons[i].getBoundingClientRect();
-      if (e.clientY >= rect.top && e.clientY <= rect.bottom &&
-          e.clientX >= rect.left && e.clientX <= rect.right) {
-        buttons[i].click();
-        break;
-      }
-    }
-  }
-});
 </script>
 <!-- Omnisend tracking script -->
 <script type="text/javascript">
