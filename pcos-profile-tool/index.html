@@ -329,7 +329,12 @@ body {
       <p class="teaser-body">Your profile summary is a starting point. The full report goes deeper, explaining the mechanisms driving your specific symptoms and how they connect to each other.</p>
       <ul class="teaser-list" id="teaser-list"></ul>
       <!-- Omnisend embed -->
-      <div id="omnisend-embedded-v2-69f1e1c22aa3d2dc5baa44d2"></div>
+      <!-- Pattern-specific Omnisend forms — correct one shown by JS based on result -->
+      <div id="form-pattern-mixed" style="display:none"><div id="omnisend-embedded-v2-6a02708eaab0ece00b6642a0"></div></div>
+      <div id="form-pattern-hpo-axis" style="display:none"><div id="omnisend-embedded-v2-69f1e1c22aa3d2dc5baa44d2"></div></div>
+      <div id="form-pattern-insulin-dominant" style="display:none"><div id="omnisend-embedded-v2-6a026f22aab0ece00b66429e"></div></div>
+      <div id="form-pattern-androgen-led" style="display:none"><div id="omnisend-embedded-v2-6a026ffb733faefe1aa45faa"></div></div>
+      <div id="form-pattern-androgen-metabolic" style="display:none"><div id="omnisend-embedded-v2-6a027029aab0ece00b66429f"></div></div>
       <div class="privacy">No spam. Unsubscribe any time.</div>
     </div>
     <div class="about">
@@ -611,41 +616,16 @@ function showResults() {
 
   document.getElementById('results').style.display = 'block';
   window.pfnPatternTag = pattern.tag;
+
+  // Show only the matching Omnisend form
+  document.querySelectorAll('[id^="form-pattern-"]').forEach(function(el) {
+    el.style.display = 'none';
+  });
+  var formEl = document.getElementById('form-' + pattern.tag);
+  if (formEl) formEl.style.display = 'block';
 }
 
 render(0);
-
-// Apply pattern tag when Omnisend form is submitted
-// We wait for the form to render, then attach a click listener to the submit button
-function attachOmnisendTagging() {
-  var submitBtn = document.querySelector('[id^="omnisend-form-"][id*="-action-"]');
-  if (submitBtn) {
-    submitBtn.addEventListener('click', function() {
-      var emailInput = document.querySelector('input[type="email"]');
-      if (emailInput && emailInput.value && window.pfnPatternTag) {
-        var email = emailInput.value;
-        var tag = window.pfnPatternTag;
-        // Wait for Omnisend to process the signup before tagging
-        setTimeout(function() {
-          window.omnisend.identifyContact({
-            email: email,
-            tags: [tag]
-          });
-        }, 2000);
-      }
-    });
-  } else {
-    // Form not rendered yet, try again shortly
-    setTimeout(attachOmnisendTagging, 500);
-  }
-}
-
-// Start looking for the form button once results are shown
-var _origShowResults = showResults;
-showResults = function() {
-  _origShowResults();
-  setTimeout(attachOmnisendTagging, 1000);
-};
 </script>
 <!-- Omnisend tracking script -->
 <script type="text/javascript">
